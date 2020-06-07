@@ -6,13 +6,13 @@ from flask.cli import with_appcontext
 
 
 def get_db():
-  """
-  Returns the database connection. Reuses existing if it is present.
-  """
-  if 'db' not in g:
-    g.db = sqlite3.connect(
-      current_app.config['DATABASE'],
-      detect_types=sqlite3.PARSE_DECLTYPES
+    """
+    Returns the database connection. Reuses existing if it is present.
+    """
+    if 'db' not in g:
+        g.db = sqlite3.connect(
+        current_app.config['DATABASE'],
+        detect_types=sqlite3.PARSE_DECLTYPES
     )
     g.db.row_factory = sqlite3.Row
 
@@ -30,10 +30,10 @@ def close_db(e=None):
 
 
 def init_db():
-  db = get_db()
+    db = get_db()
 
-  with current_app.open_resource('schema.sql') as f:
-    db.executescript(f.read().decode('utf8'))
+    with current_app.open_resource('schema.sql') as f:
+        db.executescript(f.read().decode('utf8'))
 
 # These are python decorators.
 # https://realpython.com/primer-on-python-decorators/
@@ -50,10 +50,10 @@ def init_db_command():
     click.echo('Initialized the database.')
 
 def init_app(app):
-  """
-  Takes in an instance of a flask app and registers the teardown function
-  and the init_command_command that can be called with the flask command.
+    """
+    Takes in an instance of a flask app and registers the teardown function
+    and the init_command_command that can be called with the flask command.
 
-  """
-  app.teardown_appcontext(close_db)
-  app.cli.add_command(init_db_command)
+    """
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
