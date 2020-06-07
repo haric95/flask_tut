@@ -1,0 +1,18 @@
+<!-- The extends keyword tells us that the register template will use content
+     from the base template, but insert the additional blocks into it -->
+{% extends 'base.html' %}
+<!-- putting block title into block header means the page title will
+     automatically have the same title as the header. neat :) -->
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Register">
+  </form>
+{% endblock %}
