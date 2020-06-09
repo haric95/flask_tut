@@ -1,2 +1,3 @@
 instance/
 flask-env/
+flaskr/__pycache__/
