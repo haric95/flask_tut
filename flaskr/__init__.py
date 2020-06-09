@@ -38,4 +38,11 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    # registering the blog blueprint
+    from . import blog
+    app.register_blueprint(blog.bp)
+    # seeing as this is the main page, it makes sense to rename the endpoint to
+    # just index rather than blog.index (blog.index will still work however)
+    app.add_url_rule('/', endpoint='index')
+
     return app
