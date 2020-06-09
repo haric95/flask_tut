@@ -1,0 +1,7 @@
+# this tells machine which files to copy over these folder to our package.
+
+include flaskr/schema.sql
+graft flaskr/static
+graft flaskr/templates
+# but exclude all bytecode files.
+global-exclude *.pyc
